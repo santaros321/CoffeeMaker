@@ -1,5 +1,4 @@
 package Input;
 
-class Status {
-
+class Command {
 }
