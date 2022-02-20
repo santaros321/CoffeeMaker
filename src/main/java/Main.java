@@ -1,4 +1,5 @@
 import Input.Commands;
+import Input.Status;
 
 import java.util.*;
 
@@ -17,8 +18,14 @@ public class Main {
             commandStatus
     ));
 
-    private static void main(String command) {
-        System.out.println("udało się");
+    private static void main(Commands userCommand) {
+        switch (userCommand){
+            case HELLO -> System.out.println("HELLO");
+            case STATUS -> {
+                Status status = new Status();
+                status.printStatus();
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -26,14 +33,12 @@ public class Main {
         main.mainLoop();
     }
 
-    private void mainLoop(){
+    void mainLoop(){
         String userCommand;
         do{
             userCommand = getUserCommand();
             userCommand = refactorCommand(userCommand);
-            if(checkUserCommand(userCommand))
-                main(userCommand);
-            else System.out.println("Wrong Command");
+            if(!checkUserCommand(userCommand)) System.out.println("WRONG COMMAND");
         }while(!userCommand.equals("EXIT"));
     }
 
@@ -48,7 +53,10 @@ public class Main {
 
     boolean checkUserCommand(String command){
         for(Commands commands:commandsList){
-            if (command.equals(commands.toString(commands))) return true;
+            if (command.equals(commands.toString(commands))) {
+                main(commands);
+                return true;
+            }
         }
         return false;
     }

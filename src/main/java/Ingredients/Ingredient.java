@@ -2,7 +2,8 @@ package Ingredients;
 
 interface Ingredient {
 
-    void addIngredient();
-    void removeIngredient();
+    void addIngredient(int amount);
+
+    void removeIngredient(int amount);
 
 }

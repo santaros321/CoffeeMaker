@@ -1,4 +1,0 @@
-package Input;
-
-class Command {
-}
